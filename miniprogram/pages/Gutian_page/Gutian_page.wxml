@@ -1,0 +1,8 @@
+<!--pages/Gutian_page/Gutian_page.wxml-->
+
+<!--头部图片-->
+<swiper class="page_header" indicator-dots="{{true}}" autoplay="{{true}}" circular="{{true}}">
+    <swiper-item class="header_item" wx:for="{{img_urls}}">
+        <image class="header_img" src="{{item}}" />
+    </swiper-item>
+</swiper>
