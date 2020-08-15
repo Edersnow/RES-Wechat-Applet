@@ -1,0 +1,103 @@
+<!--头部图片-->
+<swiper class="page_header" indicator-dots="{{true}}" autoplay="{{true}}" circular="{{true}}">
+    <swiper-item class="header_item" wx:for="{{img_urls}}">
+        <image class="header_img" src="{{item}}" />
+    </swiper-item>
+</swiper>
+
+<!--头标题部分-->
+<view class="page_title">
+    <text class="title_text">古田会议旧址</text>
+</view>
+
+<!--简介部分-->
+<view class="breif_introduction">
+    <view class="BIV_title">
+        <text class="BI_title">景点简介</text>
+    </view>
+    <view class="BIV_content">
+        <text class="BI_content" space="ensp">{{BI_contents}}</text>
+    </view>
+    <button type="primary" plain="{{true}}">打卡</button>
+</view>
+
+<!--详细信息部分-->
+<view class="detailed_information">
+    <view class="DIV_title">
+        <text class="DI_title">详细信息</text>
+    </view>
+    <view class="DIV_content">
+        <view class="DI_content" wx:for="{{DI_contents}}">
+            <view class="DIV_icons">
+                <image class="DI_icons" src="{{item.icon_url}}"></image>
+            </view>
+            <view class="item_titlev">
+                <text class="item_title">{{item.title}}</text>
+            </view>
+            <view class="item_contentv">
+                <text class="item_content">{{item.contents}}</text>
+            </view>
+        </view>
+        <view class="DI_content" wx:for = "{{DI_nexts}}">
+            <view class="DIV_icons">
+                <image class="DI_icons" src="{{item.icon_url}}"></image>
+            </view>
+            <view class="item_titlev">
+                <text class="item_title">{{item.title}}</text>
+            </view>
+            <view class="item_contentv">
+                <image class="next_icons" src="{{item.next_url}}"></image>
+            </view>
+        </view>
+    </view>
+
+
+
+    <view class="DIV_title">
+        <text class="DI_title">建议</text>
+    </view>
+    <view class="DIV_content">
+        <view class="RC_content" wx:for="{{RC_contents}}">
+            <view class="RC_title">
+                <view class="DIV_icons">
+                    <image class="DI_icons" src="{{item.icon_url}}"></image>
+                </view>
+                <view class="item_titlev">
+                    <text class="item_title">{{item.title}}</text>
+                </view>
+            </view>
+            <view class="text_contentv">
+                <text class="text_content" space="ensp">{{item.content}}</text>
+            </view>
+        </view>
+    </view>
+</view>
+
+
+
+<!--评论区部分-->
+<view class="message_board">
+    <view class="BIV_title">
+        <text class="BI_title">评论区</text>
+    </view>
+    <view class="MBV_list">
+        <view class="list_item" wx:for="{{MB_contents}}">
+            <view class="MBV_title">
+                <view class="MBV_head">
+                    <image class="MB_head" src="{{item.head_url}}"></image>
+                </view>
+                <view class="MBV_NAD">
+                    <view class="MBV_name">
+                        <text class="MB_name">{{item.name}}</text>
+                    </view>
+                    <view class="MBV_date">
+                        <text class="MB_date">{{item.year}}-{{item.month}}-{{item.day}}</text>
+                    </view>
+                </view>
+            </view>
+            <view class="MBV_content">
+                <text class="MB_content" space="ensp">{{item.content}}</text>
+            </view>
+        </view>
+    </view>
+</view>

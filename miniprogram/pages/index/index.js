@@ -14,6 +14,26 @@ Page({
       target: '',
       location: '龙岩市|上杭县',
       index: '../Caixi_page/Caixi_page'
+    },{
+      name: '福音医院',
+      target: '',
+      location: '龙岩市|长汀县',
+      index: '../Fuyin_page/Fuyin_page'
+    },{
+      name: '闽西工农银行',
+      target: '',
+      location: '龙岩市|长汀县',
+      index: '../Yinhang_page/Yinhang_page'
+    },{
+      name: '后田暴动纪念馆',
+      target: '',
+      location: '龙岩市|新罗区',
+      index: '../Houtian_page/Houtian_page'
+    },{
+      name: '邓子恢纪念馆',
+      target: '',
+      location: '龙岩市|新罗区',
+      index: '../Dengzihui_page/Dengzihui_page'
     }]
   },
 

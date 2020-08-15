@@ -1,4 +1,4 @@
-// pages/Caixi_page/Caixi_page.js
+// pages/Houtian_page/Houtian_page.js
 Page({
 
   /**

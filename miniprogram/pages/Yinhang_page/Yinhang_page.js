@@ -1,4 +1,4 @@
-// pages/Caixi_page/Caixi_page.js
+// pages/Yinhang_page/Yinhang_page.js
 Page({
 
   /**

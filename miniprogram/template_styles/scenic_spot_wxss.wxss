@@ -1,0 +1,160 @@
+.page_title{
+  padding: 30rpx;
+  border-bottom: 20rpx solid rgb(238, 238, 238);
+}
+
+.title_text{
+  font-size: 60rpx;
+  font-weight: bold;
+}
+
+
+
+/*简介部分*/
+.breif_introduction{
+  padding: 30rpx 30rpx 50rpx 30rpx;
+  border-bottom: 20rpx solid rgb(238, 238, 238);
+}
+
+.BIV_title{
+  padding: 10rpx 0rpx 20rpx 0rpx;
+  border-bottom: 5rpx solid rgb(238, 238, 238);
+}
+
+.BI_title{
+  font-size: 45rpx;
+  font-weight: bold;
+}
+
+.BIV_content{
+  padding: 20rpx 0rpx 35rpx 0rpx;
+}
+
+.BI_content{
+  font-size: 35rpx;
+  color: rgb(136, 136, 136);
+}
+
+
+
+/*详细信息部分*/
+.detailed_information{
+  padding: 0rpx 30rpx 30rpx 30rpx;
+  border-bottom: 20rpx solid rgb(238, 238, 238);
+}
+
+.DIV_title{
+  padding:50rpx 0rpx 20rpx 15rpx;
+  border-bottom: 5rpx solid rgb(238, 238, 238);
+}
+
+.DI_title{
+  font-size: 45rpx;
+  font-weight: bold;
+}
+
+.DIV_content{
+  border-bottom: 5rpx solid rgb(238, 238, 238);
+}
+
+.DI_content{
+  height: 80rpx;
+  padding: 30rpx 0rpx 30rpx 0rpx;
+  border-bottom: 3rpx solid rgb(238, 238, 238);
+}
+
+.DIV_icons{
+  float: left;
+  padding: 15rpx 17.5rpx 0rpx 17.5rpx;
+}
+
+.DI_icons{
+  width: 55rpx;
+  height: 55rpx;
+}
+
+.item_titlev{
+  float: left;
+  padding: 15rpx 0rpx 0rpx 10rpx;
+}
+
+.item_title{
+  font-size: 40rpx;
+}
+
+.item_contentv{
+  float: right;
+  padding: 15rpx 15rpx 0rpx 0rpx;
+}
+
+.item_content{
+  color: rgb(136, 136, 136);
+}
+
+.next_icons{
+  width: 60rpx;
+  height: 60rpx;
+}
+
+.RC_title{
+  height: 80rpx;
+  padding: 20rpx 0rpx 10rpx 0rpx;
+}
+
+.text_contentv{
+  padding: 0rpx 15rpx 30rpx 15rpx;
+  border-bottom: 4rpx solid rgb(238, 238, 238);
+}
+
+.text_content{
+  color: rgb(136, 136, 136);
+}
+
+
+
+/*评论区部分*/
+.message_board{
+  padding: 30rpx;
+}
+
+.list_item{
+  border-bottom: 3rpx solid rgb(238, 238, 238);
+}
+
+.MBV_title{
+  height: 130rpx;
+}
+
+.MBV_head{
+  float: left;
+  padding: 25rpx 0rpx 0rpx 20rpx;
+}
+
+.MB_head{
+  width: 80rpx;
+  height: 80rpx;
+}
+
+.MBV_NAD{
+  padding: 20rpx 0rpx 0rpx 20rpx;
+  float: left;
+}
+
+.MB_name{
+  font-size: 35rpx;
+  font-weight: 500;
+}
+
+.MB_date{
+  font-size: 30rpx;
+  color: rgb(136, 136, 136);
+}
+
+.MBV_content{
+  padding: 0rpx 20rpx 30rpx 20rpx;
+}
+
+.MB_content{
+  font-size: 36rpx;
+  font-weight: 300;
+}

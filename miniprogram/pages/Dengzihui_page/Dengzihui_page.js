@@ -1,4 +1,4 @@
-// pages/Caixi_page/Caixi_page.js
+// pages/Dengzihui_page/Dengzihui_page.js
 Page({
 
   /**

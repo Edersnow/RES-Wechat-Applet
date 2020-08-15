@@ -1,4 +1,4 @@
-// pages/Caixi_page/Caixi_page.js
+// pages/Fuyin_page/Fuyin_page.js
 Page({
 
   /**
