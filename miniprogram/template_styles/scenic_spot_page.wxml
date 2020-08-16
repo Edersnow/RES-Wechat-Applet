@@ -1,7 +1,7 @@
 <!--头部图片-->
 <swiper class="page_header" indicator-dots="{{true}}" autoplay="{{true}}" circular="{{true}}">
     <swiper-item class="header_item" wx:for="{{img_urls}}">
-        <image class="header_img" src="{{item}}" />
+        <image class="header_img" style="width: 100%; height: 500rpx" src="{{item}}" mode="aspectFill" />
     </swiper-item>
 </swiper>
 
@@ -38,7 +38,7 @@
                 <text class="item_content">{{item.contents}}</text>
             </view>
         </view>
-        <view class="DI_content" wx:for = "{{DI_nexts}}">
+        <navigator url="{{item.target}}" open-type="navigate" bindtap="{{item.function_name}}" class="DI_content" wx:for = "{{DI_nexts}}">
             <view class="DIV_icons">
                 <image class="DI_icons" src="{{item.icon_url}}"></image>
             </view>
@@ -48,7 +48,7 @@
             <view class="item_contentv">
                 <image class="next_icons" src="{{item.next_url}}"></image>
             </view>
-        </view>
+        </navigator>
     </view>
 
 

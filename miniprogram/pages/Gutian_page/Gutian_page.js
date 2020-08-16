@@ -1,4 +1,6 @@
 // pages/Gutian_page/Gutian_page.js
+var app = getApp();
+
 Page({
 
   /**
@@ -6,8 +8,9 @@ Page({
    */
   data: {
     img_urls:[
-      "",
-      ""
+      "../../test_img/Gutian_head.jpg",
+      "../../test_img/Gutian_page1.jpg",
+      "../../test_img/Gutian_page2.jpg"
     ],
 
     BI_contents: "    古田会议会址，原为“廖氏宗祠”，又名“万源祠”。位于福建省龙岩市上杭县古田镇采眉岭笔架山下。会址座东朝西。始建于清宣宗道光二十八年（1848年）的单层歇山四合院式砖木结构宗祠建筑。祠堂由前后厅和左右厢房组成，建筑面积826平方米。后改为和声小学校址。民国十八年（1929年）五月，红军第一次挺进闽西古田，改名为“曙光小学”。12月，毛泽东同志主持的红四军第九次代表大会在此召开，通过了具有历史意义的古田会议决议案。1961年3月，国务院将古田会议旧址列为第一批全国重点文物保护单位。",
@@ -23,13 +26,15 @@ Page({
     },{
       title : "天气",
       icon_url : "../../icons/weather.svg",
-      contents : "晴 30°C"
+      contents : "晴"
     }],
 
     DI_nexts: [{
-      title : "地图导航",
+      title : "地图定位",
       icon_url : "../../icons/routine.svg",
-      next_url : "../../icons/next.svg"
+      next_url : "../../icons/next.svg",
+      function_name : "ChangeLocation",
+      target : "../maps/maps"
     }],
 
     RC_contents: [{
@@ -63,11 +68,25 @@ Page({
     }]
   },
 
+  ChangeLocation: function (){
+    app.globalData.map_longitude = "116.827240",
+    app.globalData.map_latitude = "25.216220"
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var that=this;
+    wx.request({
+      url: 'https://restapi.amap.com/v3/weather/weatherInfo?key=4483144043f6722e135a98987380ebeb&city=110101&extensions=base',
+      method: 'GET',
+      success: function(res){
+        that.setData({
+          'DI_contents[2].contents' : res.data.lives[0].weather+' '+res.data.lives[0].temperature + '°C'
+        })
+      }
+    })
   },
 
   /**

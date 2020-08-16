@@ -6,17 +6,17 @@ Page({
   data: {
     main_arr: [{
       name: '古田会议旧址',
-      target: '',
+      target: '../../head_img/Gutian.jpg',
       location: '龙岩市|上杭县',
       index: '../Gutian_page/Gutian_page'
     },{
       name: '才溪乡调查纪念馆',
-      target: '',
+      target: '../../head_img/Caixi.jpg',
       location: '龙岩市|上杭县',
       index: '../Caixi_page/Caixi_page'
     },{
       name: '福音医院',
-      target: '',
+      target: '../../head_img/Fuyin.jpg',
       location: '龙岩市|长汀县',
       index: '../Fuyin_page/Fuyin_page'
     },{
@@ -26,14 +26,19 @@ Page({
       index: '../Yinhang_page/Yinhang_page'
     },{
       name: '后田暴动纪念馆',
-      target: '',
+      target: '../../head_img/Houtian.jpg',
       location: '龙岩市|新罗区',
       index: '../Houtian_page/Houtian_page'
     },{
       name: '邓子恢纪念馆',
-      target: '',
+      target: '../../head_img/Dengzihui.jpg',
       location: '龙岩市|新罗区',
       index: '../Dengzihui_page/Dengzihui_page'
+    },{
+      name: '闽西历史博物馆',
+      target: '../../head_img/Minxi.jpg',
+      location: '龙岩市|新罗区',
+      index: '../Minxi_page/Minxi_page'
     }]
   },
 

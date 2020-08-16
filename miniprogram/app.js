@@ -15,6 +15,9 @@ App({
       })
     }
 
-    this.globalData = {}
+    this.globalData = {
+      map_longitude : "117.029822",
+      map_latitude : "25.101912"
+    }
   }
 })

@@ -7,7 +7,8 @@
     "pages/Fuyin_page/Fuyin_page",
     "pages/Yinhang_page/Yinhang_page",
     "pages/Houtian_page/Houtian_page",
-    "pages/Dengzihui_page/Dengzihui_page"
+    "pages/Dengzihui_page/Dengzihui_page",
+    "pages/Minxi_page/Minxi_page"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

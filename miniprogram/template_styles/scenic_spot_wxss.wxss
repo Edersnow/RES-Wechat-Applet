@@ -1,3 +1,13 @@
+.page_header{
+  height: 500rpx;
+  border-bottom: 20rpx solid rgb(238, 238, 238);
+}
+
+.header_item{
+  height: 500rpx;
+}
+
+
 .page_title{
   padding: 30rpx;
   border-bottom: 20rpx solid rgb(238, 238, 238);

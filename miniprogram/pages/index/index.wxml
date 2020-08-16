@@ -5,11 +5,13 @@
 
 <!--主页面列表-->
 <view class="main_list">
-    <view class="list_item" wx:for="{{main_arr}}">
-        <navigator url="{{item.index}}" open-type="navigate">
-            <image class="list_img" src="{{item.target}}" mode="aspectFit|aspectFill|widthFix"></image>
-            <text class="list_name">{{item.name}}</text>
-            <text class="list_location">{{item.location}}</text>
-        </navigator>
-    </view>
+    <navigator url="{{item.index}}" open-type="navigate" class="list_item" wx:for="{{main_arr}}">
+        <view class="listV_img">
+            <view class="rad">
+                <image class="list_img" src="{{item.target}}" mode="aspectFill"></image>
+            </view>
+        </view>
+        <text class="list_name">{{item.name}}</text>
+        <text class="list_location">{{item.location}}</text>
+    </navigator>
 </view>

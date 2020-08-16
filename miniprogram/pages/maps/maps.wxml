@@ -1,2 +1,2 @@
 <!--pages/maps/maps.wxml-->
-<map longitude="117.029822" latitude="25.101912" scale="18" style="width:100%; height:100vh;" show-scale="{{true}}" show-location="{{true}}"></map>
+<map longitude="{{map_longitude}}" latitude="{{map_latitude}}" scale="15" style="width:100%; height:100vh;" show-scale="{{true}}" show-location="{{true}}"></map>
