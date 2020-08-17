@@ -1,6 +1,6 @@
 // pages/Gutian_page/Gutian_page.js
 var app = getApp();
-
+const db = wx.cloud.database();
 Page({
 
   /**
@@ -65,7 +65,9 @@ Page({
       month : "08",
       day : "02",
       content : "李四写评论是怎么回事呢？李四相信大家都很熟悉，但是李四写评论是怎么回事呢，下面就让小编带大家一起了解吧。李四写评论，其实就是写短文，大家可能会很惊讶李四怎么会写评论呢？但事实就是这样，小编也感到非常惊讶。这就是关于李四写评论的事情了，大家有什么想法呢，欢迎在评论区告诉小编一起讨论哦！"
-    }]
+    }],
+
+    isSigned : false
   },
 
   ChangeLocation: function (){
@@ -73,11 +75,29 @@ Page({
     app.globalData.map_latitude = "25.216220"
   },
 
+  Sign: function(){
+    this.setData({
+      isSigned : true
+    }),
+    app.globalData.sign_in[0].Gutian = true,
+    db.collection('SignRecorder').doc('842ae0f45f3aa5470000365e1c2172a3').update({
+      data: {
+        Gutian: true
+      }
+    })
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     var that=this;
+    /*获取签到状态*/
+    that.setData({
+      isSigned : app.globalData.sign_in[0].Gutian
+    })
+
+    /*获取天气数据*/
     wx.request({
       url: 'https://restapi.amap.com/v3/weather/weatherInfo?key=4483144043f6722e135a98987380ebeb&city=110101&extensions=base',
       method: 'GET',

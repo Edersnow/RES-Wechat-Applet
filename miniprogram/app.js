@@ -17,7 +17,9 @@ App({
 
     this.globalData = {
       map_longitude : "117.029822",
-      map_latitude : "25.101912"
+      map_latitude : "25.101912",
+      sign_in : {Gutian:false, Caixi:false, Fuyin:false, Yinhang:false, Houtian:false, Dengzihui:false, Minxi:false},
+      openId : ''
     }
   }
 })

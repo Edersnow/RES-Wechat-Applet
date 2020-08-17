@@ -1,3 +1,5 @@
+var app = getApp();
+const db = wx.cloud.database();
 Page({
 
   /**
@@ -46,7 +48,34 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    wx.showLoading({
+      title: '获取数据中。。。',
+      mask: true
+    })
+    wx.cloud.callFunction({
+      name: 'getOpenid',
+      complete: res => {
+        app.globalData.openId = res.result.openid;
+        db.collection('SignRecorder').where({
+          '_openid' : res.result.openid
+        }).get({
+          success(re){
+            if (re.data.length == 0) {
+              db.collection('SignRecorder').add({
+                data : app.globalData.sign_in
+              })
+            }
+            else{
+              app.globalData.sign_in = re.data
+              console.log(app.globalData.sign_in)
+            }
+            wx.hideLoading({
+              success: (res) => {},
+            })
+          }
+        })
+      }
+    })
   },
 
   /**

@@ -18,7 +18,12 @@
     <view class="BIV_content">
         <text class="BI_content" space="ensp">{{BI_contents}}</text>
     </view>
-    <button type="primary" plain="{{true}}">打卡</button>
+    <view wx:if="{{isSigned}}">
+        <button type="primary">已打卡</button>
+    </view>
+    <view wx:else>
+        <button type="primary" plain="{{true}}" bindtap="Sign">打卡</button>
+    </view>
 </view>
 
 <!--详细信息部分-->
