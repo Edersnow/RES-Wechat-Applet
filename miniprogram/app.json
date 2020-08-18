@@ -8,7 +8,8 @@
     "pages/Yinhang_page/Yinhang_page",
     "pages/Houtian_page/Houtian_page",
     "pages/Dengzihui_page/Dengzihui_page",
-    "pages/Minxi_page/Minxi_page"
+    "pages/Minxi_page/Minxi_page",
+    "pages/comments/comments"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

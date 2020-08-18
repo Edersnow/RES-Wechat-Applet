@@ -168,3 +168,7 @@
   font-size: 36rpx;
   font-weight: 300;
 }
+
+.write_comment{
+  padding: 50rpx 0rpx 50rpx 0rpx;
+}

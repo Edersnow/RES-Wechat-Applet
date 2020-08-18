@@ -48,14 +48,16 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    /*获取签到数据部分
     wx.showLoading({
-      title: '获取数据中。。。',
+      title: '获取签到数据中...',
       mask: true
     })
     wx.cloud.callFunction({
       name: 'getOpenid',
       complete: res => {
         app.globalData.openId = res.result.openid;
+        app.globalData.sign_in._id = res.result.openid;
         db.collection('SignRecorder').where({
           '_openid' : res.result.openid
         }).get({
@@ -66,16 +68,16 @@ Page({
               })
             }
             else{
-              app.globalData.sign_in = re.data
-              console.log(app.globalData.sign_in)
+              app.globalData.sign_in = re.data[0]
             }
-            wx.hideLoading({
-              success: (res) => {},
-            })
+            setTimeout(() => {  
+              wx.hideLoading();  
+            }, 100);
           }
         })
       }
     })
+    */
   },
 
   /**

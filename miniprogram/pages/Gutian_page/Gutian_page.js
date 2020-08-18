@@ -67,7 +67,9 @@ Page({
       content : "李四写评论是怎么回事呢？李四相信大家都很熟悉，但是李四写评论是怎么回事呢，下面就让小编带大家一起了解吧。李四写评论，其实就是写短文，大家可能会很惊讶李四怎么会写评论呢？但事实就是这样，小编也感到非常惊讶。这就是关于李四写评论的事情了，大家有什么想法呢，欢迎在评论区告诉小编一起讨论哦！"
     }],
 
-    isSigned : false
+    isSigned : false,
+    isLoading : false,
+    isLogin : false
   },
 
   ChangeLocation: function (){
@@ -76,15 +78,46 @@ Page({
   },
 
   Sign: function(){
-    this.setData({
-      isSigned : true
-    }),
-    app.globalData.sign_in[0].Gutian = true,
-    db.collection('SignRecorder').doc('842ae0f45f3aa5470000365e1c2172a3').update({
+    var that=this;
+    that.setData({
+      isLoading: true
+    })
+    db.collection('SignRecorder').doc(app.globalData.openId).update({
       data: {
         Gutian: true
+      },
+      success: function(res){
+        that.setData({
+          isSigned : true,
+          isLoading : false
+        }),
+        app.globalData.sign_in.Gutian = true,
+        wx.showToast({
+          title: '签到成功！',
+        })
       }
     })
+  },
+
+  Comment: function(){
+    app.globalData.comment_target = 'Gutian',
+    wx.navigateTo({
+      url: '../comments/comments',
+    })
+  },
+
+  GetInfo: function(e) {
+    if ("userInfo" in e.detail){
+      app.globalData.isLogin = true
+      app.globalData.userInfo = e.detail.userInfo
+      app.globalData.comment_target = 'Gutian'
+      this.setData({
+        isLogin: true
+      })
+      wx.navigateTo({
+        url: '../comments/comments',
+      })
+    }
   },
 
   /**
@@ -92,9 +125,10 @@ Page({
    */
   onLoad: function (options) {
     var that=this;
-    /*获取签到状态*/
-    that.setData({
-      isSigned : app.globalData.sign_in[0].Gutian
+    /*获取全局变量*/
+    this.setData({
+      isSigned : app.globalData.sign_in.Gutian,
+      isLogin : app.globalData.isLogin
     })
 
     /*获取天气数据*/
@@ -113,7 +147,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    
   },
 
   /**

@@ -1,0 +1,11 @@
+<form bindsubmit="submit_comment">
+  <view style="width:690rpx; height:900rpx; padding:30rpx;">
+    <view style="width:660rpx; height:350rpx; padding:15rpx; border: 5rpx solid rgb(238, 238, 238); border-radius:20rpx;">
+      <textarea name='content' placeholder="请在框内输入内容（不超过140字）" style="width:660rpx; height:350rpx;" focus="true" ></textarea>
+    </view>
+    <view style="padding:30rpx">
+      <button wx:if='{{isLoading}}' type="primary" loading="true">发表中</button>
+      <button wx:else form-type="submit" type="primary">发表</button>
+    </view>
+  </view>
+</form>
