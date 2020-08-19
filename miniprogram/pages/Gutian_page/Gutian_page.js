@@ -51,25 +51,14 @@ Page({
       content : "    暂无"
     }],
 
-    MB_contents : [{
-      head_url : "",
-      name : "张三",
-      year : "2020",
-      month : "08",
-      day : "01",
-      content : "这是一条评论"
-    },{
-      head_url : "",
-      name : "李四",
-      year : "2020",
-      month : "08",
-      day : "02",
-      content : "李四写评论是怎么回事呢？李四相信大家都很熟悉，但是李四写评论是怎么回事呢，下面就让小编带大家一起了解吧。李四写评论，其实就是写短文，大家可能会很惊讶李四怎么会写评论呢？但事实就是这样，小编也感到非常惊讶。这就是关于李四写评论的事情了，大家有什么想法呢，欢迎在评论区告诉小编一起讨论哦！"
-    }],
+    MB_contents : [],
 
     isSigned : false,
     isLoading : false,
-    isLogin : false
+    isLogin : false,
+    isUpdating : false,
+    isDeleting : false,
+    openId : ''
   },
 
   ChangeLocation: function (){
@@ -120,6 +109,63 @@ Page({
     }
   },
 
+  errorFunction: function (event) {
+    var index = event.currentTarget.dataset.index
+    var img = 'MB_contents[' + index + '].headUrl'
+    this.setData({
+     [img]: '../../icons/default.svg'
+    })
+  },
+
+  update_comment: function (){
+    var that=this
+    that.setData({
+      isUpdating: true
+    })
+    db.collection('Gutian').get({
+      success: function(res){
+        that.setData({
+          MB_contents: res.data.reverse(),
+          isUpdating: false
+        })
+        wx.showToast({
+          title: '刷新成功！'
+        })
+      },
+      fail: function(res){
+        wx.showToast({
+          title: '刷新失败',
+          icon: 'none'
+        })
+      }
+    })
+  },
+
+  delete_message: function(res){
+    var that=this
+    that.setData({
+      isDeleting: true
+    })
+    db.collection('Gutian').doc(res.currentTarget.dataset._id).remove({
+      success: function(re){
+        wx.showToast({
+          title: '删除成功！'
+        })
+        that.data.MB_contents.splice(res.currentTarget.dataset.index, 1)
+        that.setData({
+          MB_contents: that.data.MB_contents,
+          isDeleting: false
+        })
+      },
+      fail: function(re){
+        wx.showToast({
+          title: '删除失败',
+          icon: 'none'
+        })
+      }
+    })
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -128,7 +174,8 @@ Page({
     /*获取全局变量*/
     this.setData({
       isSigned : app.globalData.sign_in.Gutian,
-      isLogin : app.globalData.isLogin
+      isLogin : app.globalData.isLogin,
+      openId: app.globalData.openId
     })
 
     /*获取天气数据*/
@@ -138,6 +185,15 @@ Page({
       success: function(res){
         that.setData({
           'DI_contents[2].contents' : res.data.lives[0].weather+' '+res.data.lives[0].temperature + '°C'
+        })
+      }
+    })
+
+    //获取评论数据
+    db.collection('Gutian').get({
+      success: function(res){
+        that.setData({
+          MB_contents: res.data.reverse()
         })
       }
     })

@@ -48,7 +48,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    /*获取签到数据部分
     wx.showLoading({
       title: '获取签到数据中...',
       mask: true
@@ -77,7 +76,6 @@ Page({
         })
       }
     })
-    */
   },
 
   /**

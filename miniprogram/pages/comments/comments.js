@@ -20,7 +20,6 @@ Page({
 
     var tmp_date = Date.parse(new Date())
     var date = new Date(tmp_date)
-    tmp_date = tmp_date/1000
     var Y = '' + (date.getFullYear());
     var M = '' + (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1);
     var D = '' + (date.getDate() < 10 ? '0' + date.getDate() : date.getDate());
@@ -28,7 +27,6 @@ Page({
     db.collection(that.data.target).add({
       data: {
         content: res.detail.value.content,
-        timeKey: tmp_date,
         name: that.data.userInfo.nickName,
         headUrl: that.data.userInfo.avatarUrl,
         year: Y,
@@ -42,11 +40,18 @@ Page({
         wx.showToast({
           title: '发表成功！',
           duration: 1500,
+          mask: true,
           complete: function(){
             setTimeout(() => {
               wx.navigateBack()
             }, 1500);
           }
+        })
+      },
+      fail: function(res){
+        wx.showToast({
+          title: '发表失败',
+          icon: 'none'
         })
       }
     })

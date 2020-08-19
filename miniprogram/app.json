@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/allplace/allplace",
     "pages/index/index",
     "pages/maps/maps",
     "pages/Gutian_page/Gutian_page",

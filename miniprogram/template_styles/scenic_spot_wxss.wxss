@@ -127,12 +127,21 @@
   padding: 30rpx;
 }
 
+.MBV_top{
+  padding: 10rpx 15rpx 20rpx 15rpx;
+  border-bottom: 5rpx solid rgb(238, 238, 238);
+}
+
 .list_item{
   border-bottom: 3rpx solid rgb(238, 238, 238);
 }
 
 .MBV_title{
   height: 130rpx;
+}
+
+.update_but{
+  float: right;
 }
 
 .MBV_head{
@@ -171,4 +180,21 @@
 
 .write_comment{
   padding: 50rpx 0rpx 50rpx 0rpx;
+}
+
+.no_comment{
+  padding: 60rpx 255rpx 60rpx 255rpx;
+  width: 180rpx;
+  border-bottom: 3rpx solid rgb(238, 238, 238);
+}
+
+.no_comment_tips{
+  font-size: 35rpx;
+  font-weight: 500;
+  color: rgb(136, 136, 136);
+}
+
+.MBV_delete{
+  padding: 30rpx 20rpx 0rpx 0rpx;
+  float: right;
 }

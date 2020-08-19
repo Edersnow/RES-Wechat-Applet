@@ -5,7 +5,7 @@
 
 <!--主页面列表-->
 <view class="main_list">
-    <navigator url="{{item.index}}" open-type="navigate" class="list_item" wx:for="{{main_arr}}">
+    <navigator url="{{item.index}}" open-type="navigate" class="list_item" wx:for="{{main_arr}}" wx:key="index">
         <view class="listV_img">
             <view class="rad">
                 <image class="list_img" src="{{item.target}}" mode="aspectFill"></image>
