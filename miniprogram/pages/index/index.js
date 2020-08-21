@@ -7,75 +7,71 @@ Page({
    */
   data: {
     main_arr: [{
-      name: '古田会议旧址',
+      name: '龙岩市古田旅游区',
       target: '../../head_img/Gutian.jpg',
       location: '龙岩市|上杭县',
       index: '../Gutian_page/Gutian_page'
     },{
-      name: '才溪乡调查纪念馆',
+      name: '毛泽东才溪乡调查旧址',
       target: '../../head_img/Caixi.jpg',
       location: '龙岩市|上杭县',
       index: '../Caixi_page/Caixi_page'
     },{
-      name: '福音医院',
-      target: '../../head_img/Fuyin.jpg',
-      location: '龙岩市|长汀县',
-      index: '../Fuyin_page/Fuyin_page'
-    },{
-      name: '闽西工农银行',
-      target: '',
-      location: '龙岩市|长汀县',
-      index: '../Yinhang_page/Yinhang_page'
-    },{
-      name: '后田暴动纪念馆',
-      target: '../../head_img/Houtian.jpg',
-      location: '龙岩市|新罗区',
-      index: '../Houtian_page/Houtian_page'
-    },{
-      name: '邓子恢纪念馆',
-      target: '../../head_img/Dengzihui.jpg',
-      location: '龙岩市|新罗区',
-      index: '../Dengzihui_page/Dengzihui_page'
-    },{
-      name: '闽西历史博物馆',
+      name: '中央苏区（闽西）历史博物馆',
       target: '../../head_img/Minxi.jpg',
       location: '龙岩市|新罗区',
       index: '../Minxi_page/Minxi_page'
-    }]
+    },{
+      name: '东肖红色旧址群',
+      target: '../../head_img/Dongxiao.jpg',
+      location: '龙岩市|新罗区',
+      index: '../Dongxiao/Dongxiao'
+    },{
+      name: '长汀红色旧址群',
+      target: '../../head_img/Changting.jpg',
+      location: '龙岩市|长汀县',
+      index: '../Changting_page/Changting_page'
+    },{
+      name: '松毛岭战地遗址',
+      target: '../../head_img/Songmaoling.jpg',
+      location: '龙岩市|连城县',
+      index: '../Songmaoling_page/Songmaoling_page'
+    }],
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    wx.showLoading({
-      title: '获取签到数据中...',
-      mask: true
-    })
-    wx.cloud.callFunction({
-      name: 'getOpenid',
-      complete: res => {
-        app.globalData.openId = res.result.openid;
-        app.globalData.sign_in._id = res.result.openid;
-        db.collection('SignRecorder').where({
-          '_openid' : res.result.openid
-        }).get({
-          success(re){
-            if (re.data.length == 0) {
-              db.collection('SignRecorder').add({
-                data : app.globalData.sign_in
-              })
+    if (!app.globalData.Gotsign){
+      wx.showLoading({
+        title: '获取签到数据中...',
+        mask: true
+      })
+      wx.cloud.callFunction({
+        name: 'getOpenid',
+        complete: res => {
+          app.globalData.openId = res.result.openid;
+          app.globalData.sign_in._id = res.result.openid;
+          db.collection('SignRecorder').where({
+            '_openid' : res.result.openid
+          }).get({
+            success(re){
+              if (re.data.length == 0) {
+                db.collection('SignRecorder').add({
+                  data : app.globalData.sign_in
+                })
+              }
+              else{
+                app.globalData.sign_in = re.data[0]
+              }
+              app.globalData.Gotsign = true
+              wx.hideLoading();
             }
-            else{
-              app.globalData.sign_in = re.data[0]
-            }
-            setTimeout(() => {  
-              wx.hideLoading();  
-            }, 100);
-          }
-        })
-      }
-    })
+          })
+        }
+      })
+    }
   },
 
   /**

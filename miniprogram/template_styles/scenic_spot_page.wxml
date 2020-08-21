@@ -7,14 +7,22 @@
 
 <!--头标题部分-->
 <view class="page_title">
-    <text class="title_text">古田会议旧址</text>
+    <text class="title_text">{{page_title}}</text>
+</view>
+<view class="switcher">
+    <view wx:for="{{switchers}}" wx:key="index">
+        <view wx:if="{{chooseNum==index}}" class="chosen_item">
+            <text class="chosen_text">{{item}}</text>
+        </view>
+        <view wx:else class="normal_item" data-index="{{index}}" bindtap="Changechoose">
+            <text class="swicher_text">{{item}}</text>
+        </view>
+    </view>
 </view>
 
 <!--简介部分-->
+<view wx:if="{{chooseNum==0}}">
 <view class="breif_introduction">
-    <view class="BIV_title">
-        <text class="BI_title">景点简介</text>
-    </view>
     <view class="BIV_content">
         <text class="BI_content" space="ensp">{{BI_contents}}</text>
     </view>
@@ -28,12 +36,11 @@
         <button type="primary" plain="{{true}}" bindtap="Sign">打卡</button>
     </view>
 </view>
+</view>
 
 <!--详细信息部分-->
+<view wx:elif="{{chooseNum==1}}">
 <view class="detailed_information">
-    <view class="DIV_title">
-        <text class="DI_title">详细信息</text>
-    </view>
     <view class="DIV_content">
         <view class="DI_content" wx:for="{{DI_contents}}" wx:key="index">
             <view class="DIV_icons">
@@ -61,9 +68,6 @@
 
 
 
-    <view class="DIV_title">
-        <text class="DI_title">建议</text>
-    </view>
     <view class="DIV_content">
         <view class="RC_content" wx:for="{{RC_contents}}" wx:key="index">
             <view class="RC_title">
@@ -75,15 +79,17 @@
                 </view>
             </view>
             <view class="text_contentv">
-                <text class="text_content" space="ensp">{{item.content}}</text>
+                <text class="text_content" space="nbsp" decode="true">{{item.content}}</text>
             </view>
         </view>
     </view>
+</view>
 </view>
 
 
 
 <!--评论区部分-->
+<view wx:else>
 <view class="message_board">
     <view class="MBV_top">
         <text class="BI_title">评论区</text>
@@ -125,4 +131,5 @@
     <view wx:else class="write_comment">
         <button type="primary" plain="{{true}}" open-type="getUserInfo" bindgetuserinfo="GetInfo">写评论</button>
     </view>
+</view>
 </view>

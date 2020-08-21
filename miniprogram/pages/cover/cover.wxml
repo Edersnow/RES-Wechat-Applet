@@ -1,0 +1,22 @@
+<!--pages/cover/cover.wxml-->
+<view class="container">
+  <view class="title">
+    <view class="imgV">
+      <image class="img" src="../../icons/logo.png"></image>
+    </view>
+  </view>
+  <view class="logo_nameV">
+    <text class="logo_name">红土行歌·游闽西</text>
+  </view>
+  <view class="listV">
+    <navigator class="listI" url="../index/index">
+      <text class="listT">景点介绍</text>
+    </navigator>
+    <navigator class="listI" url="../allplace/allplace">
+      <text class="listT">景点一览</text>
+    </navigator>
+  </view>
+  <view class="explanation">
+    <text class="content" decode="true">上海交通大学&四川大学\n新时代社会认知实践课程·红土行歌\n景点资料来源：龙岩市政府</text>
+  </view>
+</view>

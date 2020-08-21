@@ -15,27 +15,15 @@ App({
       })
     }
 
-    wx.getSetting({
-      success: res => {
-        if (res.authSetting['scope.userInfo']) {
-          wx.getUserInfo({
-            success: res => {
-              this.globalData.userInfo = res.userInfo,
-              this.globalData.isLogin = true
-            }
-          })
-        }
-      }
-    })
-
     this.globalData = {
       map_longitude : "117.029822",
       map_latitude : "25.101912",
-      sign_in : {Gutian:false, Caixi:false, Fuyin:false, Yinhang:false, Houtian:false, Dengzihui:false, Minxi:false, _id:''},
+      sign_in : {Gutian:false, Caixi:false, Changting:false, Songmaoling:false, Dongxiao:false, Minxi:false, _id:''},
       openId : '',
       comment_target : '',
       userInfo : null,
-      isLogin : false
+      isLogin : false,
+      Gotsign : false
     }
   }
 })

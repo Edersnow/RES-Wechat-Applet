@@ -1,28 +1,35 @@
 .main_header{
-  width: 100%;
-  height: 360rpx;
+  padding: 30rpx 0 30rpx 40rpx;
+  border-bottom: 10rpx solid rgb(238, 238, 238);
+  display: flex;
+}
+
+.header_text{
+  font-size: 55rpx;
+  font-weight: 550;
+}
+
+.main_list{
+  border-bottom: 10rpx solid rgb(238, 238, 238);
 }
 
 .list_item{
-  width: 100%;
-  height: 270rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 30rpx 0;
   border-bottom-style: solid;
   border-bottom-width: 1rpx;
   border-bottom-color: rgb(238, 238, 238);
 }
 
 .listV_img{
-  float: left;
   width: 250rpx;
   height: 210rpx;
-  margin: 30rpx 0rpx 30rpx 30rpx;
-}
-
-.rad{
-  border-radius: 15rpx;
-  width: 250rpx;
-  height: 210rpx;
+  border-radius: 25rpx;
   overflow: hidden;
+  margin-right: 32rpx;
 }
 
 .list_img{
@@ -30,17 +37,20 @@
   height: 210rpx;
 }
 
-.list_name{
-  float: left;
-  padding: 40rpx 30rpx 30rpx 30rpx;
+.listV_text{
   width: 410rpx;
-  font-size: 50rpx;
-  font-weight: bold;
+  height: 210rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.list_name{
+  font-size: 45rpx;
+  font-weight: 550;
 }
 
 .list_location{
-  float: left;
-  padding: 50rpx 30rpx 30rpx 30rpx;
   font-size: 35rpx;
   color: darkgray;
 }

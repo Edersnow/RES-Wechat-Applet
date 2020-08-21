@@ -1,0 +1,68 @@
+/* pages/cover/cover.wxss */
+page {
+  background-color: #F6F6F6;
+}
+
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding: 125rpx 0;
+}
+
+.title{
+  display: flex;
+  flex-direction: row;
+}
+
+.img{
+  height: 200rpx;
+  width: 200rpx;
+}
+
+.logo_nameV{
+  padding: 10rpx 0;
+}
+
+.logo_name{
+  font-size: 75rpx;
+  font-weight: 600;
+  color: firebrick;
+}
+
+.listV{
+  padding: 150rpx 0 0 0;
+  border-bottom: 6rpx solid rgb(203, 97, 97);
+}
+
+.listI{
+  display: flex;
+  width: 400rpx;
+  height: 110rpx;
+  border-top: 6rpx solid rgb(203, 97, 97);
+  justify-content: center;
+  align-items: center;
+}
+
+.listT{
+  font-size: 55rpx;
+  font-weight: 600;
+  letter-spacing: 10rpx;
+  color: rgb(184, 68, 68);
+}
+
+.explanation{
+  padding: 150rpx 0 0 0;
+  display: flex;
+  align-items: center;
+}
+
+.content{
+  font-size: 35rpx;
+  font-weight: 500;
+  color: rgb(206, 132, 132);
+  text-align: center;
+}

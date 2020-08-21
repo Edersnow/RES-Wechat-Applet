@@ -1,22 +1,22 @@
 {
   "pages": [
+    "pages/cover/cover",
     "pages/allplace/allplace",
     "pages/index/index",
     "pages/maps/maps",
     "pages/Gutian_page/Gutian_page",
     "pages/Caixi_page/Caixi_page",
-    "pages/Fuyin_page/Fuyin_page",
-    "pages/Yinhang_page/Yinhang_page",
-    "pages/Houtian_page/Houtian_page",
-    "pages/Dengzihui_page/Dengzihui_page",
     "pages/Minxi_page/Minxi_page",
+    "pages/Changting_page/Changting_page",
+    "pages/Songmaoling_page/Songmaoling_page",
+    "pages/Dongxiao/Dongxiao",
     "pages/comments/comments"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#F6F6F6",
-    "navigationBarTitleText": "红土行歌·小程序",
+    "navigationBarTitleText": "红土行歌·闽西红色旅游助手",
     "navigationBarTextStyle": "black"
   },
   "sitemapLocation": "sitemap.json",
