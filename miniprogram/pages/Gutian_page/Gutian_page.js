@@ -20,7 +20,7 @@ Page({
       "评论区"
     ],
 
-    BI_contents: "    古田旅游区位于龙岩市上杭县古田镇，景区内人文自然资源丰富。1929年12月底，中国工农红军红四军第九次代表大会（史称“古田会议”）在这里召开。会议确定了思想建党、政治建军、党指挥枪的原则，成为我党我军建设史上具有里程碑意义的会议。2015年10月，古田旅游区成功晋级为国家5A级旅游景区，荣获“全国十大优秀爱国主义教育基地”“全国红色旅游经典景区”“全国中小学生研学实践教育基地”等荣誉称号，现已成为福建省“十大”精品景区和红色旅游龙头，是全国红色旅游十大精品线路的核心景区",
+    BI_contents: "        古田旅游区位于龙岩市上杭县古田镇，景区内人文自然资源丰富。1929年12月底，中国工农红军红四军第九次代表大会（史称“古田会议”）在这里召开。会议确定了思想建党、政治建军、党指挥枪的原则，成为我党我军建设史上具有里程碑意义的会议。2015年10月，古田旅游区成功晋级为国家5A级旅游景区，荣获“全国十大优秀爱国主义教育基地”“全国红色旅游经典景区”“全国中小学生研学实践教育基地”等荣誉称号，现已成为福建省“十大”精品景区和红色旅游龙头，是全国红色旅游十大精品线路的核心景区",
 
     DI_contents: [{
       title : "景区级别",
@@ -51,7 +51,7 @@ Page({
     },{
       title : "营业时间",
       icon_url : "../../icons/time.svg",
-      content : "夏令时：每天08:00-18:00（17:30停止入场）\n冬令时：每天08:00-17:30（17:00停止入场）\n疫情期间：每天08:30-16:30"
+      content : "夏令时：每天08:00-18:00（17:30停止入场）\n\n冬令时：每天08:00-17:30（17:00停止入场）\n\n疫情期间：每天08:30-16:30"
     },{
       title : "交通方式",
       icon_url : "../../icons/tour.svg",
@@ -61,9 +61,9 @@ Page({
       icon_url : "../../icons/time.svg",
       content : "约两个小时"
     },{
-      title : "其它事项",
+      title : "包含景点信息",
       icon_url : "../../icons/attention.svg",
-      content : "暂无"
+      content : "古田旅游区中含有众多红色景点：\n · 古田会议会址——万源祠\n · 毛主席纪念园\n · 古田会议纪念馆\n · 毛泽东《星星之火 可以燎原》写作旧址——协成店\n · 中共红四军前委机关暨政治部旧址——松荫堂\n · 红四军司令部旧址——中兴堂\n · 星火燎原红色主题蜡像馆"
     }],
 
     MB_contents : [],
@@ -93,21 +93,180 @@ Page({
     that.setData({
       isLoading: true
     })
-    db.collection('SignRecorder').doc(app.globalData.openId).update({
-      data: {
-        Gutian: true
+
+    wx.getSetting({
+      success: (res) => {
+        //拒绝过
+        if (res.authSetting['scope.userLocation'] != undefined && res.authSetting['scope.userLocation'] != true) {
+          wx.showModal({
+            title: '提示',
+            content: '打卡操作需要获取你的地理位置，请确认授权~',
+            success: function (res) {
+              if (res.confirm) {
+                wx.openSetting({
+                  success: function (dataAu) {
+                    //授权成功
+                    if (dataAu.authSetting["scope.userLocation"] == true) {
+                      wx.getLocation({
+                        success (res){
+                          that.inline_sign(res)
+                        },
+                        fail(res){
+                          that.setData({
+                            isLoading : false
+                          }),
+                          wx.showToast({
+                            title: '打卡失败，请检查您的网络连接',
+                            icon: 'none',
+                            duration: 2000
+                          })
+                        }
+                      })
+                    }
+                    //未授权
+                    else {
+                      that.setData({
+                        isLoading : false
+                      }),
+                      wx.showToast({
+                          title: '授权失败',
+                          icon: 'none'
+                      })
+                    }
+                  },
+                  fail(res){
+                    that.setData({
+                      isLoading : false
+                    }),
+                    wx.showToast({
+                      title: '打卡失败，请检查您的网络连接',
+                      icon: 'none',
+                      duration: 2000
+                    })
+                  }
+                })
+              }
+              else{
+                that.setData({
+                  isLoading : false
+                })
+              }
+            }
+          })
+        }
+
+        //初次进入
+        else if (res.authSetting['scope.userLocation'] == undefined) {
+          wx.authorize({
+            scope: 'scope.userLocation',
+            //成功授权
+            success () {
+              wx.getLocation({
+                success (res){
+                  that.inline_sign(res)
+                },
+                fail(res){
+                  that.setData({
+                    isLoading : false
+                  }),
+                  wx.showToast({
+                    title: '打卡失败，请检查您的网络连接',
+                    icon: 'none',
+                    duration: 2000
+                  })
+                }
+              })
+            },
+            fail (){
+              that.setData({
+                isLoading : false
+              }),
+              wx.showToast({
+                title: '需要提供位置信息才能打卡~',
+                icon: 'none',
+                duration: 2500
+              })
+            }
+          })
+        }
+
+        // 已授权
+        else if (res.authSetting['scope.userLocation']) {
+          wx.getLocation({
+            success (res){
+              that.inline_sign(res)
+            },
+            fail(res){
+              that.setData({
+                isLoading : false
+              }),
+              wx.showToast({
+                title: '打卡失败，请检查您的网络连接',
+                icon: 'none',
+                duration: 2000
+              })
+            }
+          })
+        }
       },
-      success: function(res){
+
+
+
+      fail(res){
         that.setData({
-          isSigned : true,
           isLoading : false
         }),
-        app.globalData.sign_in.Gutian = true,
         wx.showToast({
-          title: '签到成功！',
+          title: '打卡失败，请检查您的网络连接',
+          icon: 'none',
+          duration: 2000
         })
       }
     })
+  },
+
+  inline_sign: function(res){
+    var that = this;
+    //经纬度与距离（公里）的转换度量
+    var transform = 111.2;
+    //限定打卡位置
+    if (Math.abs(res.longitude - 116.827240) * transform < 5 && Math.abs(res.latitude - 25.216220) * transform < 5){
+      db.collection('SignRecorder').doc(app.globalData.openId).update({
+        data: {
+          Gutian: true
+        },
+        success: function(res){
+          that.setData({
+            isSigned : true,
+            isLoading : false
+          }),
+          app.globalData.sign_in.Gutian = true,
+          wx.showToast({
+            title: '打卡成功！',
+          })
+        },
+        fail: function(res){
+          that.setData({
+            isLoading : false
+          }),
+          wx.showToast({
+            title: '打卡失败，请检查您的网络连接',
+            icon: 'none',
+            duration: 2000
+          })
+        }
+      })
+    }
+    else{
+      that.setData({
+        isLoading : false
+      }),
+      wx.showToast({
+        title: '请在景点附近打卡~',
+        icon: 'none',
+        duration: 2000
+      })
+    }
   },
 
   Comment: function(){
@@ -150,14 +309,15 @@ Page({
           MB_contents: res.data.reverse(),
           isUpdating: false
         })
-        wx.showToast({
-          title: '刷新成功！'
-        })
       },
       fail: function(res){
+        that.setData({
+          isUpdating: false
+        })
         wx.showToast({
-          title: '刷新失败',
-          icon: 'none'
+          title: '刷新失败，请检查您的网络连接',
+          icon: 'none',
+          duration: 2000
         })
       }
     })
@@ -165,25 +325,37 @@ Page({
 
   delete_message: function(res){
     var that=this
-    that.setData({
-      isDeleting: true
-    })
-    db.collection('Gutian').doc(res.currentTarget.dataset._id).remove({
-      success: function(re){
-        wx.showToast({
-          title: '删除成功！'
-        })
-        that.data.MB_contents.splice(res.currentTarget.dataset.index, 1)
-        that.setData({
-          MB_contents: that.data.MB_contents,
-          isDeleting: false
-        })
-      },
-      fail: function(re){
-        wx.showToast({
-          title: '删除失败',
-          icon: 'none'
-        })
+    wx.showModal({
+      title: '提示',
+      content: '确定要删除这条评论吗？',
+      success (re) {
+        if (re.confirm) {
+          that.setData({
+            isDeleting: true
+          })
+          db.collection('Gutian').doc(res.currentTarget.dataset._id).remove({
+            success: function(re){
+              wx.showToast({
+                title: '删除成功！'
+              })
+              that.data.MB_contents.splice(res.currentTarget.dataset.index, 1)
+              that.setData({
+                MB_contents: that.data.MB_contents,
+                isDeleting: false
+              })
+            },
+            fail: function(re){
+              wx.showToast({
+                title: '删除失败，请检查您的网络连接',
+                icon: 'none',
+                duration: 2000
+              })
+              that.setData({
+                isDeleting: false
+              })
+            }
+          })
+        }
       }
     })
   },
@@ -208,6 +380,13 @@ Page({
         that.setData({
           'DI_contents[2].contents' : res.data.lives[0].weather+' '+res.data.lives[0].temperature + '°C'
         })
+      },
+      fail: function(res){
+        wx.showToast({
+          title: '获取天气数据失败，请检查您的网络连接',
+          icon: 'none',
+          duration: 2000
+        })
       }
     })
 
@@ -216,6 +395,13 @@ Page({
       success: function(res){
         that.setData({
           MB_contents: res.data.reverse()
+        })
+      },
+      fail: function(res){
+        wx.showToast({
+          title: '获取评论数据失败，请检查您的网络连接',
+          icon: 'none',
+          duration: 2000
         })
       }
     })

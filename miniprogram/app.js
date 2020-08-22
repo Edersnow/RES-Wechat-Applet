@@ -23,7 +23,8 @@ App({
       comment_target : '',
       userInfo : null,
       isLogin : false,
-      Gotsign : false
+      Gotsign : false,
+      Gotpremit: false
     }
   }
 })

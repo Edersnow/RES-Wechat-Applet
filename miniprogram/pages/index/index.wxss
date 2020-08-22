@@ -24,6 +24,18 @@
   border-bottom-color: rgb(238, 238, 238);
 }
 
+.list_item_H{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 30rpx 0;
+  border-bottom-style: solid;
+  border-bottom-width: 1rpx;
+  border-bottom-color: rgb(238, 238, 238);
+  background-color: #EEEEEE;
+}
+
 .listV_img{
   width: 250rpx;
   height: 210rpx;

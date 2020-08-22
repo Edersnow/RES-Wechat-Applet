@@ -43,15 +43,25 @@ Page({
           mask: true,
           complete: function(){
             setTimeout(() => {
-              wx.navigateBack()
+              var pages = getCurrentPages();
+              var prevPage= pages[pages.length - 2];
+              wx.navigateBack({
+                success: function() {
+                    prevPage.update_comment();
+                }
+              });
             }, 1500);
           }
         })
       },
       fail: function(res){
+        that.setData({
+          isLoading : false
+        })
         wx.showToast({
-          title: '发表失败',
-          icon: 'none'
+          title: '发表失败，请检查您的网络连接',
+          icon: 'none',
+          duration: 2000
         })
       }
     })

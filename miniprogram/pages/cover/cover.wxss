@@ -47,6 +47,16 @@ page {
   align-items: center;
 }
 
+.listI_H{
+  display: flex;
+  width: 400rpx;
+  height: 110rpx;
+  border-top: 6rpx solid rgb(203, 97, 97);
+  justify-content: center;
+  align-items: center;
+  background-color: #EEEEEE;
+}
+
 .listT{
   font-size: 55rpx;
   font-weight: 600;

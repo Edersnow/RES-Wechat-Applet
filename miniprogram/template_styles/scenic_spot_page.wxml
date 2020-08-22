@@ -24,7 +24,7 @@
 <view wx:if="{{chooseNum==0}}">
 <view class="breif_introduction">
     <view class="BIV_content">
-        <text class="BI_content" space="ensp">{{BI_contents}}</text>
+        <text class="BI_content" space="nbsp">{{BI_contents}}</text>
     </view>
     <view wx:if="{{isLoading}}">
         <button type="primary" plain="{{true}}" loading="{{true}}">打卡中...</button>
@@ -91,13 +91,6 @@
 <!--评论区部分-->
 <view wx:else>
 <view class="message_board">
-    <view class="MBV_top">
-        <text class="BI_title">评论区</text>
-        <view class="update_but">
-            <button wx:if="{{isUpdating}}" size="mini" style="width:120rpx; height:60rpx; font-size:30rpx; color:rgb(136, 136, 136)">刷新</button>
-            <button wx:else size="mini" bindtap="update_comment" style="width:120rpx; height:60rpx; font-size:30rpx; color:rgb(136, 136, 136)">刷新</button>
-        </view>
-    </view>
     <view wx:if="{{MB_contents.length != 0}}" class="MBV_list">
         <view class="list_item" wx:for="{{MB_contents}}" wx:key="index">
             <view class="MBV_title">
@@ -118,12 +111,12 @@
                 </view>
             </view>
             <view class="MBV_content">
-                <text class="MB_content" space="ensp">{{item.content}}</text>
+                <text class="MB_content" space="nbsp">{{item.content}}</text>
             </view>
         </view>
     </view>
     <view wx:else class="no_comment">
-        <text class="no_comment_tips">暂无评论~</text>
+        <text class="no_comment_tips">暂无评论，快来抢沙发吧~</text>
     </view>
     <view wx:if="{{isLogin}}" class="write_comment">
         <button type="primary" plain="{{true}}" bindtap="Comment">写评论</button>
