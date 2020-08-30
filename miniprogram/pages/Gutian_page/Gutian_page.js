@@ -1,4 +1,3 @@
-// pages/Gutian_page/Gutian_page.js
 var app = getApp();
 const db = wx.cloud.database();
 Page({
@@ -6,10 +5,15 @@ Page({
   /**
    * 页面的初始数据
    */
+
+  //variable
   data: {
     img_urls:[
-      "../../test_img/Gutian_head.jpg",
-      "../../test_img/Gutian_page1.jpg"
+      "cloud://testenv-ckzjq.7465-testenv-ckzjq-1302866771/Gutian1.jpg",
+      "cloud://testenv-ckzjq.7465-testenv-ckzjq-1302866771/Gutian2.jpg",
+      "cloud://testenv-ckzjq.7465-testenv-ckzjq-1302866771/Gutian3.jpg",
+      "cloud://testenv-ckzjq.7465-testenv-ckzjq-1302866771/Gutian4.jpg",
+      "cloud://testenv-ckzjq.7465-testenv-ckzjq-1302866771/Gutian5.jpg"
     ],
 
     page_title:'龙岩市古田旅游区',
@@ -51,7 +55,7 @@ Page({
     },{
       title : "营业时间",
       icon_url : "../../icons/time.svg",
-      content : "夏令时：每天08:00-18:00（17:30停止入场）\n\n冬令时：每天08:00-17:30（17:00停止入场）\n\n疫情期间：每天08:30-16:30"
+      content : "夏令：周一至周日08:00-18:00（17:30停止入场）\n\n冬令：周一至周日08:00-17:30（17:00停止入场）\n\n疫情期间：周一至周日08:30-16:30"
     },{
       title : "交通方式",
       icon_url : "../../icons/tour.svg",
@@ -83,6 +87,7 @@ Page({
     })
   },
 
+  //variable
   ChangeLocation: function (){
     app.globalData.map_longitude = "116.827240",
     app.globalData.map_latitude = "25.216220"
@@ -230,8 +235,12 @@ Page({
     //经纬度与距离（公里）的转换度量
     var transform = 111.2;
     //限定打卡位置
-    if (Math.abs(res.longitude - 116.827240) * transform < 5 && Math.abs(res.latitude - 25.216220) * transform < 5){
+
+    //variable
+    if (Math.abs(res.longitude - 116.827240) * transform < 2 && Math.abs(res.latitude - 25.216220) * transform < 2){
       db.collection('SignRecorder').doc(app.globalData.openId).update({
+
+        //variable
         data: {
           Gutian: true
         },
@@ -240,6 +249,8 @@ Page({
             isSigned : true,
             isLoading : false
           }),
+
+          //variable
           app.globalData.sign_in.Gutian = true,
           wx.showToast({
             title: '打卡成功！',
@@ -270,6 +281,8 @@ Page({
   },
 
   Comment: function(){
+
+    //variable
     app.globalData.comment_target = 'Gutian',
     wx.navigateTo({
       url: '../comments/comments',
@@ -280,6 +293,8 @@ Page({
     if ("userInfo" in e.detail){
       app.globalData.isLogin = true
       app.globalData.userInfo = e.detail.userInfo
+
+      //variable
       app.globalData.comment_target = 'Gutian'
       this.setData({
         isLogin: true
@@ -303,6 +318,8 @@ Page({
     that.setData({
       isUpdating: true
     })
+
+    //variable
     db.collection('Gutian').get({
       success: function(res){
         that.setData({
@@ -333,6 +350,8 @@ Page({
           that.setData({
             isDeleting: true
           })
+
+          //variable
           db.collection('Gutian').doc(res.currentTarget.dataset._id).remove({
             success: function(re){
               wx.showToast({
@@ -367,6 +386,8 @@ Page({
     var that=this;
     /*获取全局变量*/
     this.setData({
+
+      //variable
       isSigned : app.globalData.sign_in.Gutian,
       isLogin : app.globalData.isLogin,
       openId: app.globalData.openId
@@ -374,7 +395,9 @@ Page({
 
     /*获取天气数据*/
     wx.request({
-      url: 'https://restapi.amap.com/v3/weather/weatherInfo?key=4483144043f6722e135a98987380ebeb&city=110101&extensions=base',
+
+      //variable
+      url: 'https://restapi.amap.com/v3/weather/weatherInfo?key=4483144043f6722e135a98987380ebeb&city=350823&extensions=base',
       method: 'GET',
       success: function(res){
         that.setData({
@@ -391,6 +414,8 @@ Page({
     })
 
     //获取评论数据
+
+    //variable
     db.collection('Gutian').get({
       success: function(res){
         that.setData({

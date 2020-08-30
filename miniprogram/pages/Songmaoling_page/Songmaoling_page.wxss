@@ -1,1 +1,1 @@
-/* pages/Songmaoling_page/Songmaoling_page.wxss */
+@import "../../template_styles/scenic_spot_wxss.wxss"

@@ -1,2 +1,1 @@
-<!--pages/Minxi_page/Minxi_page.wxml-->
-<text>pages/Minxi_page/Minxi_page.wxml</text>
+<include src="../../template_styles/scenic_spot_page.wxml"/>

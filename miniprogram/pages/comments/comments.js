@@ -24,47 +24,88 @@ Page({
     var M = '' + (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1);
     var D = '' + (date.getDate() < 10 ? '0' + date.getDate() : date.getDate());
 
-    db.collection(that.data.target).add({
-      data: {
-        content: res.detail.value.content,
-        name: that.data.userInfo.nickName,
-        headUrl: that.data.userInfo.avatarUrl,
-        year: Y,
-        month: M,
-        day: D
-      },
-      success: function(e){
-        that.setData({
-          isLoading : false
-        })
-        wx.showToast({
-          title: '发表成功！',
-          duration: 1500,
-          mask: true,
-          complete: function(){
-            setTimeout(() => {
-              var pages = getCurrentPages();
-              var prevPage= pages[pages.length - 2];
-              wx.navigateBack({
-                success: function() {
-                    prevPage.update_comment();
-                }
-              });
-            }, 1500);
+    if (res.detail.value.content.length == 0){
+      that.setData({
+        isLoading : false
+      })
+      wx.showToast({
+        title: '请输入内容后发表',
+        icon: 'none',
+        duration: 2000
+      })
+    }
+    else{
+      wx.cloud.callFunction({
+        name:'checkMessage',
+        data:{
+          content: res.detail.value.content
+        },
+        success(ckres){
+          if (ckres.result.errCode == 0){
+            db.collection(that.data.target).add({
+              data: {
+                content: res.detail.value.content,
+                name: that.data.userInfo.nickName,
+                headUrl: that.data.userInfo.avatarUrl,
+                year: Y,
+                month: M,
+                day: D
+              },
+              success: function(e){
+                that.setData({
+                  isLoading : false
+                })
+                wx.showToast({
+                  title: '发表成功！',
+                  duration: 1500,
+                  mask: true,
+                  complete: function(){
+                    setTimeout(() => {
+                      var pages = getCurrentPages();
+                      var prevPage= pages[pages.length - 2];
+                      wx.navigateBack({
+                        success: function() {
+                            prevPage.update_comment();
+                        }
+                      });
+                    }, 1500);
+                  }
+                })
+              },
+              fail: function(res){
+                that.setData({
+                  isLoading : false
+                })
+                wx.showToast({
+                  title: '发表失败，请检查您的网络连接',
+                  icon: 'none',
+                  duration: 2000
+                })
+              }
+            })
+          }else{
+            that.setData({
+              isLoading : false
+            })
+            wx.showToast({
+              title: '您的信息中包含敏感用语，提交失败！',
+              icon: 'none',
+              duration: 3000
+            })
           }
-        })
-      },
-      fail: function(res){
-        that.setData({
-          isLoading : false
-        })
-        wx.showToast({
-          title: '发表失败，请检查您的网络连接',
-          icon: 'none',
-          duration: 2000
-        })
-      }
-    })
+        },
+        fail(ckres){
+          that.setData({
+            isLoading : false
+          })
+          wx.showToast({
+            title: '发表失败，请检查您的网络连接',
+            icon: 'none',
+            duration: 2000
+          })
+        }
+      })
+    }
   },
 
   /**

@@ -1,1 +1,1 @@
-/* pages/Changting_page/Changting_page.wxss */
+@import "../../template_styles/scenic_spot_wxss.wxss"
